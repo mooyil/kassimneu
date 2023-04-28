@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.application.name }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  ingressClassName: nginx
+  tls:
+  - hosts:
+    - demo.kassim.canaxa.click
+    secretName: letsencrypt-secret-prod
+  rules:
+  - host: demo.kassim.canaxa.click
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.application.name}}
+            port:
+              number: {{ .Values.application.port }}

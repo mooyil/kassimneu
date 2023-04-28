@@ -1,0 +1,14 @@
+replicaCount: 1
+
+application:
+  name: kassim-app
+  port: 4000
+
+
+resources:
+  limits:
+    cpu: 500m
+    memory: 1Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi

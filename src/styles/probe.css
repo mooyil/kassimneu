@@ -1,0 +1,15 @@
+.instagram-parent:hover .instagram-child {
+    opacity: 1;
+}
+
+.youtube-parent:hover .youtube-child {
+    opacity: 1;
+}
+
+.youtube-child {
+    clip-path: inset(0 0 round 20px);
+
+}
+.instagram-child {
+    clip-path: inset(0 0 round 40px);
+}

@@ -1,0 +1,59 @@
+# This file is a template, and might need editing before it works on your project.
+# This is a sample GitLab CI/CD configuration file that should run without any modifications.
+# It demonstrates a basic 3 stage CI/CD pipeline. Instead of real tests or scripts,
+# it uses echo commands to simulate the pipeline execution.
+#
+# A pipeline is composed of independent jobs that run scripts, grouped into stages.
+# Stages run in sequential order, but jobs within stages run in parallel.
+#
+# For more information, see: https://docs.gitlab.com/ee/ci/yaml/index.html#stages
+#
+# You can copy and paste this template into a new `.gitlab-ci.yml` file.
+# You should not add this template to an existing `.gitlab-ci.yml` file by using the `include:` keyword.
+#
+# To contribute improvements to CI/CD templates, please follow the Development guide at:
+# https://docs.gitlab.com/ee/development/cicd/templates.html
+# This specific template is located at:
+# https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
+
+
+image:
+  name: gcr.io/kaniko-project/executor:debug
+  entrypoint: [""]
+
+variables:
+  KUBERNETES_SERVICE_ACCOUNT_OVERWRITE: gitlab-gitlab-runner
+  KUBERNETES_SERVICE_ACCOUNT_OVERWRITE_ALLOWED: gitlab-*
+
+stages:          # List of stages for jobs, and their order of execution
+  - build
+  - deploy
+
+build-job:       # This job runs in the build stage, which runs first.
+  stage: build
+  when: manual
+  script:
+    - |
+      echo "Kaniko arguments to run: --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile  --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}""
+      mkdir -p /kaniko/.docker
+      echo "{\"auths\":{\"$CI_REGISTRY\":{\"auth\":\"$(echo -n $CI_REGISTRY_USER:$CI_REGISTRY_PASSWORD | base64)\"}}}" > /kaniko/.docker/config.json
+      /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination "${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
+  rules:
+    - if: $CI_COMMIT_TAG
+
+
+deploy-job:      # This job runs in the deploy stage. aa
+ stage: deploy   # It only runs when *both* jobs in the test stage complete successfully.
+ when: manual
+ image: dtzar/helm-kubectl:3.11.2
+ # environment: production
+ script:
+   - echo "Context Values --server="${SERVER}" ca-data ${CERTIFICATE_AUTHORITY_DATA} user-token ${USER_TOKEN}"
+   - kubectl config set-cluster k8s --server="${SERVER}"
+   - kubectl config set clusters.k8s.certificate-authority-data ${CERTIFICATE_AUTHORITY_DATA}
+   - kubectl config set-credentials gitlab-gitlab-runner --token="${USER_TOKEN}"
+   - kubectl config set-context default --cluster=k8s --user=gitlab-gitlab-runner
+   - kubectl config use-context default
+   - kubectl get pods --namespace webseiten
+   - echo "Helm arguments to run --image.registry ${CI_REGISTRY_IMAGE}:${CI_COMMIT_TAG}"
+   - helm upgrade --install kassim ./deploy --namespace webseiten --set image.registry=${CI_REGISTRY_IMAGE} --set image.tag=${CI_COMMIT_TAG}
