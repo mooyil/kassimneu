@@ -1,9 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "aos/dist/aos.css";
 import "../styles/leistungen.css"
+import { MyContext } from "../context/ContextProvider";
 
 const LeistungenElemente = (props) => {
   useEffect(() => {
@@ -11,6 +12,9 @@ const LeistungenElemente = (props) => {
   }, []);
 
   const anzahl = [1, 2, 3, 4, 5];
+
+  const { translate, setTranslate } = useContext(MyContext);
+
 
   return (
     <div>

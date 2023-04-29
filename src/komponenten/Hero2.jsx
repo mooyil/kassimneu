@@ -25,8 +25,8 @@ const Hero2 = () => {
   }
 
   const toggleTranslate = () => {
-    setTranslate(prev => !prev)
-  }
+    setTranslate((prev) => !prev);
+  };
 
   return (
     <div
@@ -47,19 +47,23 @@ const Hero2 = () => {
 
           <p className="font-bold sm:text-lg mb-4">{heroContent.description}</p>
           <div className="flex flex-col md:flex-row md:items-center">
-
-          <div onClick={setTranslate((prev) => !prev)} className="pt-4 ">
-            <Link
-              to="/kontakt#kontakt-form"
-              className="bg-accent hover:bg-gray-200  hover:text-accent duration-500 shadow-lg text-paragraphHell p-3 sm:p-4 px-6 sm:px-10 uppercase"
+            <div onClick={setTranslate((prev) => !prev)} className="pt-4 ">
+              <Link
+                to="/kontakt#kontakt-form"
+                className="bg-accent hover:bg-gray-200  hover:text-accent duration-500 shadow-lg text-paragraphHell p-3 sm:p-4 px-6 sm:px-10 uppercase"
               >
-              Kontaktiere mich
-            </Link>
+                {translate ? "Contact me" : "Kontaktiere mich"}
+              </Link>
+            </div>
+            <div className="pt-4 mt-1 md:mt-0 md:ml-2">
+              <button
+                onClick={toggleTranslate}
+                className="bg-accent hover:bg-gray-200 hover:text-accent duration-500 shadow-lg text-paragraphHell p-2.5 sm:p-3.5 px-6 sm:px-10 uppercase"
+              >
+                {translate ? "German" : "Englisch"}
+              </button>
+            </div>
           </div>
-          <div  className="pt-4 mt-1 md:mt-0 md:ml-2">
-            <button onClick={toggleTranslate} className="bg-accent hover:bg-gray-200 hover:text-accent duration-500 shadow-lg text-paragraphHell p-2.5 sm:p-3.5 px-6 sm:px-10 uppercase">{translate ? "Deutsch" : "Englisch"}</button>
-          </div>
-              </div>
         </div>
         <div data-aos="fade-in" className=" ">
           <img

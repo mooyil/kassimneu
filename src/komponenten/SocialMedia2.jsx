@@ -1,10 +1,15 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import YouTube from "react-youtube";
 import { motion } from "framer-motion";
 import nba from "../assets/nba.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import { MyContext } from "../context/ContextProvider";
 
 const SocialMedia2 = () => {
+
+  const { translate, setTranslate } = useContext(MyContext);
+
+
   const obj1 = {
     height: "500px",
     width: "1200px",
@@ -51,7 +56,7 @@ const SocialMedia2 = () => {
     >
       <div className="text-center mb-12">
         <h2 className=" text-paragraphHell text-3xl sm:text-4xl ">
-          Mein Social Media
+          {translate ? "My Social Media" : "Mein Social Media"}
         </h2>
         <div className="flex justify-center">
           <hr className="w-[100px] h-[2px] border-none font-extrabold bg-background1" />

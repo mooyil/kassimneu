@@ -14,9 +14,9 @@ import { aboutMeContent, aboutMeContentEn } from "../content/aboutMe";
 import { MyContext } from "../context/ContextProvider";
 
 const AboutMe = () => {
-  const {translate, setTranslate} = useContext(MyContext);
+  const { translate, setTranslate } = useContext(MyContext);
 
-  console.log(translate)
+  console.log(translate);
 
   return (
     <div id="überuns" className=" ">
@@ -32,7 +32,9 @@ const AboutMe = () => {
           <div data-aos="fade-down" className="flex-col flex-1">
             <div className=" p-12 px-6 sm:px-12 pb-6">
               <h2 className={` text-3xl sm:text-4xl text-header`}>
-                {translate ? aboutMeContentEn.first.header : aboutMeContent.first.header}
+                {translate
+                  ? aboutMeContentEn.first.header
+                  : aboutMeContent.first.header}
               </h2>
               <div className="flex">
                 <hr className="w-[100px] border-none h-[2px] font-extrabold bg-header" />
@@ -41,11 +43,14 @@ const AboutMe = () => {
             </div>
             <div className={`p-12 pt-0 px-6 sm:px-12 pb-6 `}>
               <p className="text-paragraph ">
-              {translate ? aboutMeContentEn.first.description1 : aboutMeContent.first.description1}
+                {translate
+                  ? aboutMeContentEn.first.description1
+                  : aboutMeContent.first.description1}
               </p>
               <p className="mt-4 text-paragraph">
-              {translate ? aboutMeContentEn.first.description2 : aboutMeContent.first.description2}
-
+                {translate
+                  ? aboutMeContentEn.first.description2
+                  : aboutMeContent.first.description2}
               </p>
               <p className="text-paragraph mt-6">
                 "{aboutMeContent.first.description3}"
@@ -56,7 +61,9 @@ const AboutMe = () => {
                 to="/kontakt#kontakt-form"
                 className="bg-accent hover:bg-background2 hover:text-accent duration-500 shadow-lg text-paragraphHell p-4 px-10 uppercase"
               >
-                Kontaktiere mich
+                {translate
+                  ? aboutMeContentEn.first.buttonText
+                  : aboutMeContent.first.buttonText}
               </Link>
             </div>
           </div>
@@ -99,7 +106,9 @@ const AboutMe = () => {
               className="text-3xl p-12 px-6 sm:px-12 text-center pb-6"
             >
               <h2 className=" text-3xl text-paragraphHell sm:text-4xl">
-                Meine Leistungen
+                {translate
+                  ? aboutMeContentEn.second.header
+                  : aboutMeContent.second.header}
               </h2>
               <div className="flex justify-center">
                 <hr className="w-[100px] border-none h-[2px] font-extrabold bg-gray-500" />
@@ -108,45 +117,33 @@ const AboutMe = () => {
             </div>
             <div className="p-12 pt-0 px-6 sm:px-12 pb-6">
               <div className="flex flex-col text-accent justify-center items-center ">
-                <div
-                  data-aos="flip-left"
-                  className="sm:mx-4 mb-4 flex flex-col text-center bg-background2 shadow-lg p-6 py-12 max-w-[450px] "
-                >
-                  <Dvr sx={{ fontSize: 55 }} className="mx-auto mb-6" />
-                  <span className="mb-4 text-2xl">
-                    Seminare für Unternehmen & Hochschulen
-                  </span>
-                  <p className="text-lg">
-                    Gastvorträge, Seminare, Workshops, Consulting Services
-                  </p>
-                </div>
-                <div
-                  data-aos="flip-right"
-                  className="sm:mx-4 mb-4  flex flex-col text-center bg-background2 shadow-lg p-6 py-12 max-w-[450px]"
-                >
-                  <Person sx={{ fontSize: 55 }} className="mx-auto mb-6" />
-                  <span className="mb-4 text-2xl">1:1 Coaching & Beratung</span>
-                  <p className="text-lg">
-                    Coaching, Consulting, Entscheidungsfindung, Problemlösung
-                  </p>
-                </div>
-                <div
-                  data-aos="flip-left"
-                  className="sm:mx-4 flex flex-col text-center bg-background2 shadow-lg p-6 py-12 max-w-[450px]"
-                >
-                  <Groups sx={{ fontSize: 55 }} className="mx-auto mb-6" />
-                  <span className="mb-4 text-2xl">Gruppen-Seminare</span>
-                  <p className="text-lg">
-                    {" "}
-                    Seminare, Workshops, F & Q, Unterstützung, Motivation{" "}
-                  </p>
-                </div>
+                {aboutMeContent.second.leistungen.map((leistung, index) => (
+                  <div
+                    data-aos={leistung.animation}
+                    className="sm:mx-4 mb-4 flex flex-col text-center bg-background2 shadow-lg p-6 py-12 max-w-[450px] "
+                  >
+                    <Dvr sx={{ fontSize: 55 }} className="mx-auto mb-6" />
+                    <span className="mb-4 text-2xl">
+                      {translate
+                        ? aboutMeContentEn.second.leistungen[index].title
+                        : aboutMeContent.second.leistungen[index].title}
+                    </span>
+                    <p className="text-xl">
+                    {translate
+                        ? aboutMeContentEn.second.leistungen[index].description
+                        : aboutMeContent.second.leistungen[index].description}
+                    </p>
+                  </div>
+                ))}
+
                 <div data-aos="zoom-in" className="mt-14 mb-8">
                   <Link
                     to="/kontakt#kontakt-form"
                     className="bg-background1 hover:bg-background2 hover:text-accent duration-500 shadow-lg text-paragraph p-4 px-10 uppercase"
                   >
-                    Kontaktiere mich
+                    {translate
+                      ? aboutMeContentEn.second.buttonText
+                      : aboutMeContent.second.buttonText}
                   </Link>
                 </div>
               </div>

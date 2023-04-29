@@ -1,20 +1,25 @@
 import { Call, Email, House, Room } from "@mui/icons-material";
-import React from "react";
+import React, { useContext } from "react";
 import "aos/dist/aos.css";
+import { MyContext } from "../context/ContextProvider";
 
 
 const KontaktForm = () => {
+
+  const { translate, setTranslate } = useContext(MyContext);
+
+
   return (
     <section id="kontakt-form" className="bg-background2 p-6 py-12 md:px-20 w-full">
       <div className="flex flex-col justify-around sm:flex-row w-full">
         <div data-aos="fade-up" className="mb-6 sm:mb-0">
           <div>
-            <h2 className="text-2xl sm:text-3xl uppercase text-header">Kontakt</h2>
+            <h2 className="text-2xl sm:text-3xl uppercase text-header">{translate ? "Contact" : "Kontakt"}</h2>
             <div className="flex mb-2">
             <hr className="w-[100px] h-[2px] border-none font-extrabold bg-accent" />
             <hr className="w-[150px] h-[2px] border-none font-extrabold bg-background1" />
           </div>
-            <p className="mb-4 text-accent">Ruf an oder schreib mir</p>
+            <p className="mb-4 text-accent">{translate ? "Call me or write to me" : "Ruf an oder schreib mir"}</p>
           </div>
           <div className="text-accent">
             <div className="mb-1">

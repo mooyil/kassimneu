@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "aos/dist/aos.css";
 import "@splidejs/react-splide/css";
 import "../styles/bewertungen.css";
 import stress from "../assets/stress.webp";
 import useFetch from "../hooks/useFetch";
+import { MyContext } from "../context/ContextProvider";
 
 const Bewertungen = () => {
+  const { translate, setTranslate } = useContext(MyContext);
+
   const { loading, error, data } = useFetch(
     "http://localhost:1337/api/bewertungens?populate=bild"
   );
@@ -22,13 +25,18 @@ const Bewertungen = () => {
       <div className="p-6 py-12">
         <div data-aos="fade-down" className="pb-6">
           <h2 className={` text-3xl sm:text-4xl text-header`}>
-            Meine Bewertungen
+            {translate ? "My Reviews" : "Meine Bewertungen"}
           </h2>
           <div className="flex mb-2">
             <hr className="w-[100px] border-none h-[2px] font-extrabold bg-black" />
             <hr className="w-[150px] border-none h-[2px] font-extrabold bg-gray-300" />
           </div>
-          <p className="text-accent">Das sagen meine Kunden über mich</p>
+          <p className="text-accent">
+            {" "}
+            {translate
+              ? "This is what my customers say about me."
+              : "Das sagen meine Kunden über mich"}
+          </p>
         </div>
         <div data-aos="fade-down">
           <Splide
@@ -68,7 +76,10 @@ const Bewertungen = () => {
                           <div class="arrow"></div>
                         </blockquote>
                         <img
-                          src={"http://localhost:1337"+bewertung.attributes.bild.data.attributes.url}
+                          src={
+                            "http://localhost:1337" +
+                            bewertung.attributes.bild.data.attributes.url
+                          }
                           alt="bild"
                         />
                         <div class="author">
@@ -76,7 +87,6 @@ const Bewertungen = () => {
                             {bewertung.attributes.name}
                           </p>
                         </div>
-                        
                       </figure>
                     </SplideSlide>
                   );
