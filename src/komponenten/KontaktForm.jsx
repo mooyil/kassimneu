@@ -4,7 +4,7 @@ import "aos/dist/aos.css";
 import { MyContext } from "../context/ContextProvider";
 
 
-const KontaktForm = () => {
+const KontaktForm = ({translation, setTranslation}) => {
 
   const { translate, setTranslate } = useContext(MyContext);
 
@@ -14,12 +14,12 @@ const KontaktForm = () => {
       <div className="flex flex-col justify-around sm:flex-row w-full">
         <div data-aos="fade-up" className="mb-6 sm:mb-0">
           <div>
-            <h2 className="text-2xl sm:text-3xl uppercase text-header">{translate ? "Contact" : "Kontakt"}</h2>
+            <h2 className="text-2xl sm:text-3xl uppercase text-header">{translation === "en" ? "Contact" : "Kontakt"}</h2>
             <div className="flex mb-2">
             <hr className="w-[100px] h-[2px] border-none font-extrabold bg-accent" />
             <hr className="w-[150px] h-[2px] border-none font-extrabold bg-background1" />
           </div>
-            <p className="mb-4 text-accent">{translate ? "Call me or write to me" : "Ruf an oder schreib mir"}</p>
+            <p className="mb-4 text-accent">{translation === "en" ? "Call me or write to me" : "Ruf an oder schreib mir"}</p>
           </div>
           <div className="text-accent">
             <div className="mb-1">
@@ -95,7 +95,7 @@ const KontaktForm = () => {
 
             <div className="flex justify-start">
               <button className="h-[42px] w-[100%] px-6 uppercase bg-accent hover:bg-gray-200 hover:text-accent duration-500 text-paragraphHell flex items-center">
-                <span className="  mx-auto ">Abschicken</span>
+                <span className="  mx-auto ">{translation === "en" ? "Send" : "Abschicken"}</span>
               </button>
             </div>
           </form>

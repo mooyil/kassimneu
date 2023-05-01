@@ -55,9 +55,9 @@ const LeistungenElemente2 = (props) => {
         >
           <div className="h-full bg-accent py-12 sm:py-0 flex flex-col items-center justify-center">
             <div className="max-w-[80%] ">
-              {props.title}
+              <h3 className="text-2xl sm:text-3xl mb-4">{props.title}</h3>
 
-              {props.content}
+              <p>{props.content}</p>
             </div>
           </div>
         </div>

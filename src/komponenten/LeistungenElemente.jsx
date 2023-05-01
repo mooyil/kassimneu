@@ -3,7 +3,7 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "aos/dist/aos.css";
-import "../styles/leistungen.css"
+import "../styles/leistungen.css";
 import { MyContext } from "../context/ContextProvider";
 
 const LeistungenElemente = (props) => {
@@ -15,7 +15,6 @@ const LeistungenElemente = (props) => {
 
   const { translate, setTranslate } = useContext(MyContext);
 
-
   return (
     <div>
       <div className="flex flex-col md:flex-row justify-center ">
@@ -23,7 +22,7 @@ const LeistungenElemente = (props) => {
           data-aos="zoom-in"
           className="block md:hidden w-full py-2 sm:p-2 md:w-[50%] h-[400px] md:h-[900px]"
         >
-           <button className="splide__arrow splide__arrow--prev bg-white "></button>
+          <button className="splide__arrow splide__arrow--prev bg-white "></button>
           <button className="splide__arrow splide__arrow--next  bg-white"></button>
           <Splide
             options={{
@@ -67,7 +66,6 @@ const LeistungenElemente = (props) => {
               pauseOnFocus: true,
               pagination: false,
               speed: 800,
-           
             }}
           >
             {anzahl.map((index, element) => {
@@ -86,7 +84,6 @@ const LeistungenElemente = (props) => {
               );
             })}
           </Splide>
-
         </div>
         <div
           data-aos="zoom-in"
@@ -94,9 +91,9 @@ const LeistungenElemente = (props) => {
         >
           <div className="h-full bg-accent py-12 sm:py-0 flex flex-col items-center justify-center">
             <div className="max-w-[80%] ">
-              {props.title}
+              <h3 className="text-2xl sm:text-3xl mb-4">{props.title}</h3>
 
-              {props.content}
+              <p>{props.content}</p>
             </div>
           </div>
         </div>

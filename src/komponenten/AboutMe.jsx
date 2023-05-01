@@ -5,7 +5,7 @@ import {
   Person,
   QuestionAnswer,
 } from "@mui/icons-material";
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import kassim2 from "../assets/kassim2.webp";
 import kassim3 from "../assets/kassim3.webp";
 import "aos/dist/aos.css";
@@ -13,10 +13,10 @@ import { Link } from "react-router-dom";
 import { aboutMeContent, aboutMeContentEn } from "../content/aboutMe";
 import { MyContext } from "../context/ContextProvider";
 
-const AboutMe = () => {
+const AboutMe = ({translation, setTranslation}) => {
   const { translate, setTranslate } = useContext(MyContext);
 
-  console.log(translate);
+console.log(translation)
 
   return (
     <div id="überuns" className=" ">
@@ -32,7 +32,7 @@ const AboutMe = () => {
           <div data-aos="fade-down" className="flex-col flex-1">
             <div className=" p-12 px-6 sm:px-12 pb-6">
               <h2 className={` text-3xl sm:text-4xl text-header`}>
-                {translate
+                {translation === "en"
                   ? aboutMeContentEn.first.header
                   : aboutMeContent.first.header}
               </h2>
@@ -43,12 +43,12 @@ const AboutMe = () => {
             </div>
             <div className={`p-12 pt-0 px-6 sm:px-12 pb-6 `}>
               <p className="text-paragraph ">
-                {translate
+                {translation === "en"
                   ? aboutMeContentEn.first.description1
                   : aboutMeContent.first.description1}
               </p>
               <p className="mt-4 text-paragraph">
-                {translate
+                {translation === "en"
                   ? aboutMeContentEn.first.description2
                   : aboutMeContent.first.description2}
               </p>
@@ -61,7 +61,7 @@ const AboutMe = () => {
                 to="/kontakt#kontakt-form"
                 className="bg-accent hover:bg-background2 hover:text-accent duration-500 shadow-lg text-paragraphHell p-4 px-10 uppercase"
               >
-                {translate
+                {translation === "en"
                   ? aboutMeContentEn.first.buttonText
                   : aboutMeContent.first.buttonText}
               </Link>
@@ -106,7 +106,7 @@ const AboutMe = () => {
               className="text-3xl p-12 px-6 sm:px-12 text-center pb-6"
             >
               <h2 className=" text-3xl text-paragraphHell sm:text-4xl">
-                {translate
+                {translation === "en"
                   ? aboutMeContentEn.second.header
                   : aboutMeContent.second.header}
               </h2>
@@ -124,12 +124,12 @@ const AboutMe = () => {
                   >
                     <Dvr sx={{ fontSize: 55 }} className="mx-auto mb-6" />
                     <span className="mb-4 text-2xl">
-                      {translate
+                      {translation === "en"
                         ? aboutMeContentEn.second.leistungen[index].title
                         : aboutMeContent.second.leistungen[index].title}
                     </span>
                     <p className="text-xl">
-                    {translate
+                    {translation === "en"
                         ? aboutMeContentEn.second.leistungen[index].description
                         : aboutMeContent.second.leistungen[index].description}
                     </p>
@@ -141,7 +141,7 @@ const AboutMe = () => {
                     to="/kontakt#kontakt-form"
                     className="bg-background1 hover:bg-background2 hover:text-accent duration-500 shadow-lg text-paragraph p-4 px-10 uppercase"
                   >
-                    {translate
+                    {translation === "en"
                       ? aboutMeContentEn.second.buttonText
                       : aboutMeContent.second.buttonText}
                   </Link>

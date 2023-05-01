@@ -7,25 +7,25 @@ import stress from "../assets/stress.webp";
 import useFetch from "../hooks/useFetch";
 import { MyContext } from "../context/ContextProvider";
 
-const Bewertungen = () => {
+const Bewertungen = ({translation, setTranslation}) => {
   const { translate, setTranslate } = useContext(MyContext);
 
   const { loading, error, data } = useFetch(
     "http://localhost:1337/api/bewertungens?populate=bild"
   );
 
-  if (data == null) {
-    console.log("null");
-  } else {
-    console.log(data.data[0].attributes.bild.data.attributes.url);
-  }
+  // if (data == null) {
+  //   console.log("null");
+  // } else {
+  //   console.log(data.data[0].attributes.bild.data.attributes.url);
+  // }
 
   return (
     <div className="bg-background1">
       <div className="p-6 py-12">
         <div data-aos="fade-down" className="pb-6">
           <h2 className={` text-3xl sm:text-4xl text-header`}>
-            {translate ? "My Reviews" : "Meine Bewertungen"}
+            {translation === "en" ? "My Reviews" : "Meine Bewertungen"}
           </h2>
           <div className="flex mb-2">
             <hr className="w-[100px] border-none h-[2px] font-extrabold bg-black" />
@@ -33,7 +33,7 @@ const Bewertungen = () => {
           </div>
           <p className="text-accent">
             {" "}
-            {translate
+            {translation === "en"
               ? "This is what my customers say about me."
               : "Das sagen meine Kunden über mich"}
           </p>

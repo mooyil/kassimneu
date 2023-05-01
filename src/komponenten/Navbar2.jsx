@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { MyContext } from "../context/ContextProvider";
 import { navbarContent, navbarContentEn } from "../content/navbar";
 
-const Navbar2 = () => {
+const Navbar2 = ({ translation, setTranslation }) => {
   const [scroll, setScroll] = useState(0);
   const [toggle, setToggle] = useState(false);
   const [hidden, setHidden] = useState(true);
@@ -74,7 +74,7 @@ const Navbar2 = () => {
                 className="cursor-pointer hover:text-primary duration-100 pr-4  "
               >
                 <Link to={lin.to} className="">
-                  {translate
+                  {translation === "en"
                     ? navbarContentEn.links[index].link
                     : navbarContent.links[index].link}
                 </Link>
@@ -112,7 +112,7 @@ const Navbar2 = () => {
                 className="cursor-pointer hover:text-primary duration-100 pt-4  "
               >
                 <Link to={lin.to} className="">
-                  {translate
+                  {translation === "en"
                     ? navbarContentEn.links[index].link
                     : navbarContent.links[index].link}
                 </Link>

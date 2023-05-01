@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import zeit from "../assets/zeit.webp";
 import stress from "../assets/stress.webp";
 import geld from "../assets/geld.webp";
@@ -8,18 +8,28 @@ import leadership from "../assets/leadership.webp";
 import LeistungenElemente from "./LeistungenElemente";
 import LeistungenElemente2 from "./LeistungenElemente2";
 import { leistungenContent, leistungenContentEn } from "../content/leistungen";
-import kassim from "../assets/kassim3.webp";
-import consulting from "../assets/consulting.jpg";
-import consulting2 from "../assets/consulting2.jpg";
 import { MyContext } from "../context/ContextProvider";
-const LeistungenSection = () => {
+import kassim5 from "../assets/kassim5.jpg";
+import useFetch from "../hooks/useFetch";
+
+const LeistungenSection = ({ translation }) => {
   const { translate, setTranslate } = useContext(MyContext);
+
+  const { loading, error, data } = useFetch(
+    "https://strapi.canaxa.click/api/leistungen?locale=" + translation
+  );
+
+  if (data == null) {
+    console.log("null");
+  } else {
+    console.log(data.data[2].attributes.beschreibung);
+  }
 
   return (
     <div className=" bg-background2">
       <div
         style={{
-          backgroundImage: `url(${consulting2})`,
+          backgroundImage: `url(${kassim5})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
           backgroundPosition: "center",
@@ -31,18 +41,12 @@ const LeistungenSection = () => {
           className="bg-black bg-opacity-50 text-center py-8 sm:py-12 px-8 max-w-[90%] sm:max-w-[1100px] mx-auto mb-6 z-20"
         >
           <h2 className="mb-4 font-extrabold text-paragraphHell text-3xl sm:text-5xl ">
-          {
-            translate
-              ? leistungenContentEn.title
-              : leistungenContent.title
-          }
+            {translation === "en" ? leistungenContentEn.title : leistungenContent.title}
           </h2>
           <p className="text-paragraphHell sm:text-lg">
-          {
-            translate
+            {translation === "en"
               ? leistungenContentEn.beschreibung
-              : leistungenContent.beschreibung
-          }
+              : leistungenContent.beschreibung}
           </p>
         </div>
         <div className="inset-0 absolute h-full bg-black bg-opacity-20 z-10"></div>
@@ -50,80 +54,44 @@ const LeistungenSection = () => {
       <div className="pb-12 max-w-[1800px] p-2 sm:p-6 mx-auto">
         <LeistungenElemente
           bild={zeit}
-          content={
-            translate
-              ? leistungenContentEn.leistungen1.beschreibung
-              : leistungenContent.leistungen1.beschreibung
-          }
-          title={
-            translate
-              ? leistungenContentEn.leistungen1.title
-              : leistungenContent.leistungen1.title
-          }
+          content={data == null ? "" : data.data[1].attributes.beschreibung}
+          title={data == null ? "" : data.data[1].attributes.titel}
         />
         <LeistungenElemente2
           bild={stress}
-          content={
-            translate
-              ? leistungenContentEn.leistungen2.beschreibung
-              : leistungenContent.leistungen2.beschreibung
-          }
-          title={
-            translate
-              ? leistungenContentEn.leistungen2.title
-              : leistungenContent.leistungen2.title
-          }
+          content={data == null ? "" : data.data[2].attributes.beschreibung}
+          title={data == null ? "" : data.data[2].attributes.titel}
         />
         <LeistungenElemente
           bild={geld}
-          content={
-            translate
-              ? leistungenContentEn.leistungen3.beschreibung
-              : leistungenContent.leistungen3.beschreibung
-          }
-          title={
-            translate
-              ? leistungenContentEn.leistungen3.title
-              : leistungenContent.leistungen3.title
-          }
+          content={data == null ? "" : data.data[3].attributes.beschreibung}
+          title={data == null ? "" : data.data[3].attributes.titel}
         />
         <LeistungenElemente2
           bild={krisen}
           content={
-            translate
-              ? leistungenContentEn.leistungen4.beschreibung
-              : leistungenContent.leistungen4.beschreibung
+            data == null ? "" : data.data[0].attributes.beschreibung
           }
           title={
-            translate
-              ? leistungenContentEn.leistungen4.title
-              : leistungenContent.leistungen4.title
+            data == null ? "" : data.data[0].attributes.titel
           }
         />
         <LeistungenElemente
           bild={gebäude}
           content={
-            translate
-              ? leistungenContentEn.leistungen5.beschreibung
-              : leistungenContent.leistungen5.beschreibung
+            data == null ? "" : data.data[4].attributes.beschreibung
           }
           title={
-            translate
-              ? leistungenContentEn.leistungen5.title
-              : leistungenContent.leistungen5.title
+            data == null ? "" : data.data[4].attributes.titel
           }
         />
         <LeistungenElemente2
           bild={leadership}
           content={
-            translate
-              ? leistungenContentEn.leistungen6.beschreibung
-              : leistungenContent.leistungen6.beschreibung
+            data == null ? "" : data.data[5].attributes.beschreibung
           }
           title={
-            translate
-              ? leistungenContentEn.leistungen6.title
-              : leistungenContent.leistungen6.title
+            data == null ? "" : data.data[5].attributes.titel
           }
         />
       </div>

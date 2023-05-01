@@ -4,14 +4,14 @@ import AboutMe from "../komponenten/AboutMe";
 import Navbar from "../komponenten/Navbar";
 import Hero2 from "../komponenten/Hero2";
 
-const Home = () => {
+const Home = ({translation, setTranslation}) => {
   return (
     <div>
       {/* <Navbar/> */}
       {/* <Hero /> */}
-      <Hero2/>
+      <Hero2 translation={translation} setTranslation={setTranslation}/>
       {/* <Leistungen/> */}
-      <AboutMe />
+      <AboutMe translation={translation} setTranslation={setTranslation} />
     </div>
   );
 };

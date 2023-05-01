@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { heroContent } from "../content/hero";
 import { MyContext } from "../context/ContextProvider";
 
-const Hero2 = () => {
+const Hero2 = ({ translation, setTranslation }) => {
   const { translate, setTranslate } = useContext(MyContext);
 
   useEffect(() => {
@@ -24,8 +24,8 @@ const Hero2 = () => {
     setToggleInfo((prevInfo) => !prevInfo);
   }
 
-  const toggleTranslate = () => {
-    setTranslate((prev) => !prev);
+  const toggleTranslate = (e) => {
+    setTranslation(e.target.value);
   };
 
   return (
@@ -47,21 +47,30 @@ const Hero2 = () => {
 
           <p className="font-bold sm:text-lg mb-4">{heroContent.description}</p>
           <div className="flex flex-col md:flex-row md:items-center">
-            <div onClick={setTranslate((prev) => !prev)} className="pt-4 ">
-              <Link
-                to="/kontakt#kontakt-form"
-                className="bg-accent hover:bg-gray-200  hover:text-accent duration-500 shadow-lg text-paragraphHell p-3 sm:p-4 px-6 sm:px-10 uppercase"
-              >
-                {translate ? "Contact me" : "Kontaktiere mich"}
-              </Link>
+            <div className="pt-4">
+              <div className=" bg-accent text-center items-center flex justify-center  h-10 w-44  hover:bg-gray-200 hover:text-accent duration-500 shadow-lg  text-paragraphHell  uppercase">
+                <Link to="/kontakt#kontakt-form">
+                  <p>{translate ? "Contact me" : "Kontaktiere mich"}</p>
+                </Link>
+              </div>
             </div>
-            <div className="pt-4 mt-1 md:mt-0 md:ml-2">
-              <button
-                onClick={toggleTranslate}
-                className="bg-accent hover:bg-gray-200 hover:text-accent duration-500 shadow-lg text-paragraphHell p-2.5 sm:p-3.5 px-6 sm:px-10 uppercase"
+            <div className="pt-1 md:pt-4 mt-1 md:mt-0 md:ml-2">
+              <select
+                type="option"
+                className="bg-accent duration-500 shadow-lg text-paragraphHell h-10 w-44 text-center uppercase"
               >
-                {translate ? "German" : "Englisch"}
-              </button>
+                <option
+                  onClick={toggleTranslate}
+                  id="sprache"
+                  name="sprache"
+                  value="de"
+                >
+                  Deutsch
+                </option>
+                <option onClick={toggleTranslate} value="en">
+                  Englisch
+                </option>
+              </select>
             </div>
           </div>
         </div>

@@ -3,26 +3,36 @@ import "../styles/aboutMe2.css";
 import { aboutMe2Content, aboutMe2ContentEn } from "../content/aboutMe2.jsx";
 import "aos/dist/aos.css";
 import AOS from "aos";
-import consulting2 from "../assets/consulting2.jpg";
-import background1 from "../assets/background1.jpg";
-import background2 from "../assets/background2.jpg";
-import background3 from "../assets/background3.jpg";
-import background4 from "../assets/background4.jpg";
+import kassim5 from "../assets/kassim5.jpg";
+import useFetch from "../hooks/useFetch";
+
 import { MyContext } from "../context/ContextProvider";
 
-const AboutMe2 = () => {
+const AboutMe2 = ({ translation, setTranslation }) => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
   const { translate, setTranslate } = useContext(MyContext);
 
+  const { loading, error, data } = useFetch(
+    "https://strapi.canaxa.click/api/timelines?locale=" +
+      translation +
+      "&sort=jahr"
+  );
+
+  if (data == null) {
+    console.log("null");
+  } else {
+    console.log(data.data[0].attributes.id);
+  }
+
   return (
     <div className="">
       <div className="">
         <div
           style={{
-            backgroundImage: `url(${consulting2})`,
+            backgroundImage: `url(${kassim5})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
@@ -34,11 +44,12 @@ const AboutMe2 = () => {
             className="bg-black bg-opacity-50  text-center py-8 sm:py-12 px-8 max-w-[90%] sm:max-w-[1100px] mx-auto mb-6 z-20"
           >
             <h2 className="mb-4 font-extrabold text-white text-3xl sm:text-5xl ">
-              {translate ? aboutMe2ContentEn.title : aboutMe2Content.title}
+              {translation === "en" ? aboutMe2ContentEn.title : aboutMe2Content.title}
             </h2>
             <p className="text-white sm:text-lg">
-            {translate ? aboutMe2ContentEn.titleBeschreibung : aboutMe2Content.titleBeschreibung}
-
+              {translation === "en"
+                ? aboutMe2ContentEn.titleBeschreibung
+                : aboutMe2Content.titleBeschreibung}
             </p>
           </div>
           <div className="inset-0 absolute h-full bg-black bg-opacity-20 z-10"></div>
@@ -53,35 +64,37 @@ const AboutMe2 = () => {
           className="bg-[#efefef]"
         >
           <ul class="timeline py-12 ">
-            {aboutMe2Content.timelineElements.map((element, index) => {
-              return (
-                <li key={index}>
-                  <div className={`${element.richtung}`}>
-                    <div data-aos="zoom-in-down" className="flag-wrapper">
-                      <span className="hexa"></span>
-                      <span className="flag">
-                        {translate
-                          ? aboutMe2ContentEn.timelineElements[index]
-                              .überschrift
-                          : aboutMe2Content.timelineElements[index].überschrift}
-                        .
-                      </span>
-                      <span className="time-wrapper">
-                        <span className="time">{element.jahr}</span>
-                      </span>
-                    </div>
-                    <div
-                      data-aos="zoom-in-down"
-                      className="desc rounded-lg sm:text-lg"
-                    >
-                      {translate
-                        ? aboutMe2ContentEn.timelineElements[index].beschreibung
-                        : aboutMe2Content.timelineElements[index].beschreibung}
-                    </div>
-                  </div>
-                </li>
-              );
-            })}
+            {data === null
+              ? console.log("null")
+              : data.data.map((element, index) => {
+                  return (
+                    <li key={index}>
+                      <div
+                        className={`${
+                          index % 2 === 0 ? "direction-r" : "direction-l"
+                        }`}
+                      >
+                        <div data-aos="zoom-in-down" className="flag-wrapper">
+                          <span className="hexa"></span>
+                          <span className="flag">
+                            {element.attributes.titel}.
+                          </span>
+                          <span className="time-wrapper">
+                            <span className="time">
+                              {element.attributes.jahr}
+                            </span>
+                          </span>
+                        </div>
+                        <div
+                          data-aos="zoom-in-down"
+                          className="desc rounded-lg sm:text-lg"
+                        >
+                          {element.attributes.beschreibung}
+                        </div>
+                      </div>
+                    </li>
+                  );
+                })}
           </ul>
         </div>
       </div>

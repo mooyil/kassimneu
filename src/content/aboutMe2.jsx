@@ -192,6 +192,9 @@ export const aboutMe2Content = {
   ],
 };
 
+
+
+
 export const aboutMe2ContentEn = {
   title: `I'll show you everything for personal success.`,
   titleBeschreibung: `I am a multidisciplinary consultant and coach and have been able to prove that my approaches work with my previous successes. Previous mentees, team members, friends, and acquaintances confirm that it works in every area of life.`,
