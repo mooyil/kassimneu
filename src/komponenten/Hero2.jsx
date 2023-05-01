@@ -50,7 +50,7 @@ const Hero2 = ({ translation, setTranslation }) => {
             <div className="pt-4">
               <div className=" bg-accent text-center items-center flex justify-center  h-10 w-44  hover:bg-gray-200 hover:text-accent duration-500 shadow-lg  text-paragraphHell  uppercase">
                 <Link to="/kontakt#kontakt-form">
-                  <p>{translate ? "Contact me" : "Kontaktiere mich"}</p>
+                  <p>{translation === "en" ? "Contact me" : "Kontaktiere mich"}</p>
                 </Link>
               </div>
             </div>
