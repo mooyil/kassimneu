@@ -108,6 +108,7 @@ const Navbar2 = ({ translation, setTranslation }) => {
           {navbarContent.links.map((lin, index) => {
             return (
               <li
+              onClick={handleToggle}
                 key={index}
                 className="cursor-pointer hover:text-primary duration-100 pt-4  "
               >

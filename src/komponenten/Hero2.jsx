@@ -24,8 +24,12 @@ const Hero2 = ({ translation, setTranslation }) => {
     setToggleInfo((prevInfo) => !prevInfo);
   }
 
-  const toggleTranslate = (e) => {
-    setTranslation(e.target.value);
+  const toggleTranslate = () => {
+    if(translation === "de") {
+      setTranslation("en")
+    } else {
+      setTranslation("de")
+    }
   };
 
   return (
@@ -57,16 +61,13 @@ const Hero2 = ({ translation, setTranslation }) => {
               </div>
             </div>
             <div className="pt-1 md:pt-4 mt-1 md:mt-0 md:ml-2">
-              <select
+              <button
                 onClick={toggleTranslate}
                 type="option"
                 className="bg-accent duration-500 shadow-lg text-paragraphHell h-10 w-44 text-center uppercase"
               >
-                <option id="sprache" name="sprache" value="de">
-                  Deutsch
-                </option>
-                <option value="en">Englisch</option>
-              </select>
+              {translation === "en" ? "Deutsch" : "Englisch"}
+              </button>
             </div>
           </div>
         </div>
