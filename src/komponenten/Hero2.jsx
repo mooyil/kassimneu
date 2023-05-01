@@ -50,26 +50,22 @@ const Hero2 = ({ translation, setTranslation }) => {
             <div className="pt-4">
               <div className=" bg-accent text-center items-center flex justify-center  h-10 w-44  hover:bg-gray-200 hover:text-accent duration-500 shadow-lg  text-paragraphHell  uppercase">
                 <Link to="/kontakt#kontakt-form">
-                  <p>{translation === "en" ? "Contact me" : "Kontaktiere mich"}</p>
+                  <p>
+                    {translation === "en" ? "Contact me" : "Kontaktiere mich"}
+                  </p>
                 </Link>
               </div>
             </div>
             <div className="pt-1 md:pt-4 mt-1 md:mt-0 md:ml-2">
               <select
+                onClick={toggleTranslate}
                 type="option"
                 className="bg-accent duration-500 shadow-lg text-paragraphHell h-10 w-44 text-center uppercase"
               >
-                <option
-                  onClick={toggleTranslate}
-                  id="sprache"
-                  name="sprache"
-                  value="de"
-                >
+                <option id="sprache" name="sprache" value="de">
                   Deutsch
                 </option>
-                <option onClick={toggleTranslate} value="en">
-                  Englisch
-                </option>
+                <option value="en">Englisch</option>
               </select>
             </div>
           </div>
