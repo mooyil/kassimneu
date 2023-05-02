@@ -37,7 +37,7 @@ const AboutMe2 = ({ translation, setTranslation }) => {
             backgroundRepeat: "no-repeat",
             backgroundPosition: "center",
           }}
-          className="h-[80vh] flex flex-col pt-[92px] items-center justify-center relative"
+          className="h-[80vh] flex flex-col  pt-[92px] items-center justify-center relative"
         >
           <div
             data-aos="zoom-in"

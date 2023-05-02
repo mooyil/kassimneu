@@ -6,8 +6,10 @@ import {
   QuestionAnswer,
 } from "@mui/icons-material";
 import React, { useContext, useState } from "react";
+import kassim1 from "../assets/kassim1.webp";
 import kassim2 from "../assets/kassim2.webp";
 import kassim3 from "../assets/kassim3.webp";
+import kassim5 from "../assets/kassim5.jpg";
 import "aos/dist/aos.css";
 import { Link } from "react-router-dom";
 import { aboutMeContent, aboutMeContentEn } from "../content/aboutMe";
@@ -83,7 +85,7 @@ console.log(translation)
           <div
             className="flex-1"
             style={{
-              backgroundImage: `url(${kassim3})`,
+              backgroundImage: `url(${kassim5})`,
               backgroundSize: "cover",
               backgroundPositionY: "25%",
               backgroundPositionX: "25%",
@@ -95,7 +97,7 @@ console.log(translation)
           </div>
           <div className="sm:hidden ">
             <img
-              src={kassim3}
+              src={kassim5}
               alt="team"
               className="max-h-[500px] sm:max-h-[500px] w-full"
             />
