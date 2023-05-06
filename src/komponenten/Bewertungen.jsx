@@ -11,14 +11,14 @@ const Bewertungen = ({translation, setTranslation}) => {
   const { translate, setTranslate } = useContext(MyContext);
 
   const { loading, error, data } = useFetch(
-    "http://localhost:1337/api/bewertungens?populate=bild"
+    "https://strapi.canaxa.click/api/bewertungen?populate=*&locale=" + translation
   );
 
-  // if (data == null) {
-  //   console.log("null");
-  // } else {
-  //   console.log(data.data[0].attributes.bild.data.attributes.url);
-  // }
+  if (data == null) {
+    console.log("null");
+  } else {
+    console.log(data);
+  }
 
   return (
     <div className="bg-background1">
@@ -72,12 +72,12 @@ const Bewertungen = ({translation, setTranslation}) => {
                     >
                       <figure class="snip1157">
                         <blockquote>
-                          {bewertung.attributes.content}
+                          {bewertung.attributes.rezension}
                           <div class="arrow"></div>
                         </blockquote>
                         <img
                           src={
-                            "http://localhost:1337" +
+                            "https://strapi.canaxa.click" +
                             bewertung.attributes.bild.data.attributes.url
                           }
                           alt="bild"
