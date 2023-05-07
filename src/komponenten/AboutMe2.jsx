@@ -35,9 +35,9 @@ const AboutMe2 = ({ translation, setTranslation }) => {
             backgroundImage: `url(${kassim5})`,
             backgroundSize: "cover",
             backgroundRepeat: "no-repeat",
-            backgroundPosition: "center",
+            backgroundPositionY: "40%",
           }}
-          className="h-[80vh] flex flex-col  pt-[92px] items-center justify-center relative"
+          className="h-[100vh] flex flex-col  pt-[92px] items-center justify-center relative"
         >
           <div
             data-aos="zoom-in"

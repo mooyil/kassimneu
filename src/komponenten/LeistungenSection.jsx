@@ -12,23 +12,21 @@ import { MyContext } from "../context/ContextProvider";
 import kassim5 from "../assets/kassim5.jpg";
 import useFetch, { useFetch1 } from "../hooks/useFetch";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
+import Leistungen1 from "./leistungen/Leistungen1";
+import Leistungen2 from "./leistungen/Leistungen2";
+import Leistungen3 from "./leistungen/Leistungen3";
+import Leistungen4 from "./leistungen/Leistungen4";
+import Leistungen5 from "./leistungen/Leistungen5";
+import Leistungen6 from "./leistungen/Leistungen6";
 
 const LeistungenSection = ({ translation }) => {
   const { translate, setTranslate } = useContext(MyContext);
 
   const { loading, error, data } = useFetch(
-    "https://strapi.canaxa.click/api/leistungen?locale=" + translation
+    "https://strapi.canaxa.click/api/leistungen?populate=*&locale=" + translation
   );
 
-  const { loading1, error1, data1 } = useFetch1(
-    "https://strapi.canaxa.click/api/zeit-management-bilder?populate=*"
-  );
-
-  if (data1 == null) {
-    console.log("null");
-  } else {
-    console.log(data1.data[0].attributes.bild.data[0].attributes.url);
-  }
+  
 
   return (
     <div className=" bg-background2">
@@ -37,9 +35,9 @@ const LeistungenSection = ({ translation }) => {
           backgroundImage: `url(${kassim5})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPositionY: "40%",
         }}
-        className="h-[80vh] flex pt-[92px] flex-col items-center justify-center relative"
+        className="h-[100vh] mx-auto flex pt-[92px] flex-col items-center justify-center relative"
       >
         <div
           data-aos="zoom-in"
@@ -62,7 +60,7 @@ const LeistungenSection = ({ translation }) => {
         <div>
           <div className="flex flex-col md:flex-row justify-center "></div>
         </div>
-        <LeistungenElemente
+        {/* <LeistungenElemente
           bild={zeit}
           content={data == null ? "" : data.data[1].attributes.beschreibung}
           title={data == null ? "" : data.data[1].attributes.titel}
@@ -91,7 +89,13 @@ const LeistungenSection = ({ translation }) => {
           bild={leadership}
           content={data == null ? "" : data.data[5].attributes.beschreibung}
           title={data == null ? "" : data.data[5].attributes.titel}
-        />
+        /> */}
+        <Leistungen1 translation={translation}/>
+        <Leistungen2 translation={translation}/>
+        <Leistungen3 translation={translation}/>
+        <Leistungen4 translation={translation}/>
+        <Leistungen5 translation={translation}/>
+        <Leistungen6 translation={translation}/>
       </div>
       <div></div>
     </div>

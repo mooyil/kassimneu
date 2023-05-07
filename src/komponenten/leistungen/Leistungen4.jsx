@@ -1,25 +1,21 @@
-import React, { useContext, useEffect } from "react";
+import React, { useEffect } from "react";
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "aos/dist/aos.css";
-import "../styles/leistungen.css";
-import { MyContext } from "../context/ContextProvider";
+import useFetch from "../../hooks/useFetch";
 
-const LeistungenElemente = (props) => {
+const Leistungen4 = ({translation}) => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  const anzahl = [1, 2, 3];
+  const anzahl = [1, 2, 3, 4, 5];
 
-  const { translate, setTranslate } = useContext(MyContext);
-
-  if (!props.bild[0].attributes) {
-    console.log("hallo");
-  } else {
-    console.log(props.bild[0]?.attributes.url);
-  }
+  const { loading, error, data } = useFetch(
+    "https://strapi.canaxa.click/api/leistungen?populate=*&sort=id&locale=" +
+      translation
+  );
 
   return (
     <div>
@@ -35,16 +31,17 @@ const LeistungenElemente = (props) => {
               arrows: true,
               perMove: 1,
               pauseOnHover: true,
+              pauseOnFocus: true,
               pagination: false,
               speed: 800,
             }}
           >
-            {anzahl.map((index, element) => {
+            {data == null ? "" : data.data[3].attributes.bilder.data.map((element, index) => {
               return (
                 <SplideSlide key={index} style={{}}>
                   <div
                     style={{
-                      backgroundImage: `url(${props.bild})`,
+                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
@@ -60,13 +57,25 @@ const LeistungenElemente = (props) => {
         </div>
         <div
           data-aos="zoom-in"
-          className="hidden md:block  w-full py-2 sm:p-2 md:w-[50%] h-[400px] sm:h-[900px]"
+          className="w-full sm:h-[900px] py-2 sm:p-2 md:w-[50%] text-center text-paragraphHell"
+        >
+          <div className="h-full bg-accent py-12 sm:py-0 flex flex-col items-center justify-center">
+            <div className="max-w-[80%] ">
+              <h3 className="text-2xl sm:text-3xl mb-4">{data == null ? "" :  data.data[3].attributes.titel}</h3>
+
+              <p>{data == null ? "" :  data.data[3].attributes.beschreibung}</p>
+            </div>
+          </div>
+        </div>
+        <div
+          data-aos="zoom-in"
+          className="hidden md:block w-full py-2 sm:p-2 md:w-[50%] h-[400px] md:h-[900px]"
         >
           <button className="splide__arrow splide__arrow--prev bg-white ml-1.5"></button>
           <button className="splide__arrow splide__arrow--next mr-2 bg-white"></button>
           <Splide
             options={{
-              // arrows: true,
+              arrows: true,
               perMove: 1,
               pauseOnHover: true,
               pauseOnFocus: true,
@@ -74,12 +83,12 @@ const LeistungenElemente = (props) => {
               speed: 800,
             }}
           >
-            {anzahl.map((index, element) => {
+            {data == null ? "" : data.data[3].attributes.bilder.data.map((element, index ) => {
               return (
                 <SplideSlide key={index} style={{}}>
                   <div
                     style={{
-                      backgroundImage: `url(${props.bild})`,
+                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
@@ -91,21 +100,25 @@ const LeistungenElemente = (props) => {
             })}
           </Splide>
         </div>
-        <div
-          data-aos="zoom-in"
-          className="w-full sm:h-[900px] py-2 sm:p-2 md:w-[50%] text-center text-paragraphHell"
-        >
-          <div className="h-full bg-accent py-12 sm:py-0 flex flex-col items-center justify-center">
-            <div className="max-w-[80%] ">
-              <h3 className="text-2xl sm:text-3xl mb-4">{props.title}</h3>
-
-              <p>{props.content}</p>
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
-export default LeistungenElemente;
+export default Leistungen4;
+
+// <div>
+//   <div className="flex flex-col sm:flex-row justify-center ">
+//     <div className="w-full sm:w-[50%] h-[900px] py-2 sm:p-2">
+//       <img src={props.bild} alt="" className="w-full h-full" />
+//     </div>
+//     <div className="w-full h-[900px] py-2 sm:p-2 sm:w-[50%] text-center text-white">
+//       <div className="h-full bg-gray-800 flex flex-col items-center justify-center">
+//         <div className="max-w-[85%] ">
+//           {props.title}
+//           {props.content}
+//         </div>
+//       </div>
+//     </div>
+//   </div>
+// </div>

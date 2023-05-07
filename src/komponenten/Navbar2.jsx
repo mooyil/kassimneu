@@ -51,6 +51,16 @@ const Navbar2 = ({ translation, setTranslation }) => {
     return Math.round((window.innerHeight * vh) / 100);
   };
 
+  const toggleTranslate = (e) => {
+    // if(translation === "de") {
+    //   setTranslation("en")
+    // } else {
+    //   setTranslation("de")
+    // }
+
+    setTranslation(e.target.value);
+  };
+
   return (
     <nav
       ref={navbarRef}
@@ -61,12 +71,12 @@ const Navbar2 = ({ translation, setTranslation }) => {
     >
       <div style={{ zIndex: 70 }} className="flex flex-col">
         <div className="flex flex-col items-center justify-center">
-          <span className="text-xl font-bold">Grow with Kassim</span>
-          <span className="text-xs">Evolve your life to high achievements</span>
+          <span className="text-xl font-bold">Logo</span>
+          {/* <span className="text-xs">Evolve your life to high achievements</span> */}
         </div>
       </div>
-      <div className="md:flex hidden ">
-        <ul className="flex items-center text-lg">
+      <div className="md:flex  hidden ">
+        <ul className="flex  items-center text-lg">
           {navbarContent.links.map((lin, index) => {
             return (
               <li
@@ -82,8 +92,24 @@ const Navbar2 = ({ translation, setTranslation }) => {
             );
           })}
         </ul>
+          <div className="mr-2 ">
+            {/* <button
+                onClick={toggleTranslate}
+                type="option"
+                className="bg-accent duration-500 shadow-lg text-paragraphHell h-10 w-44 text-center uppercase"
+              >
+              {translation === "en" ? "Deutsch" : "Englisch"}
+              </button> */}
+            <select
+              onChange={toggleTranslate}
+              className="bg-accent text-paragraphHell underline duration-500 shadow-lg h-10  text-center uppercase"
+            >
+              <option value="de">De</option>
+              <option value="en">En</option>
+            </select>
+          </div>
       </div>
-
+     
       <div
         style={{ zIndex: 70 }}
         onClick={handleToggle}
@@ -98,6 +124,16 @@ const Navbar2 = ({ translation, setTranslation }) => {
           <span className="bg-paragraphHell"></span>
         </div>
       </div>
+      <div className="mr-16 md:hidden">
+        <select
+          onChange={toggleTranslate}
+          className=" bg-accent duration-500 shadow-lg h-10  text-center uppercase"
+        >
+          <option value="de">De</option>
+          <option value="en">En</option>
+        </select>
+      </div>
+
       <div
         style={{ zIndex: 30 }}
         className={`md:hidden ${
@@ -108,7 +144,7 @@ const Navbar2 = ({ translation, setTranslation }) => {
           {navbarContent.links.map((lin, index) => {
             return (
               <li
-              onClick={handleToggle}
+                onClick={handleToggle}
                 key={index}
                 className="cursor-pointer hover:text-primary duration-100 pt-4  "
               >
@@ -121,7 +157,9 @@ const Navbar2 = ({ translation, setTranslation }) => {
             );
           })}
         </ul>
+        
       </div>
+      
     </nav>
   );
 };

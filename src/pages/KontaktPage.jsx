@@ -23,9 +23,9 @@ const KontaktPage = ({translation, setTranslation}) => {
           backgroundImage: `url(${kassim5})`,
           backgroundSize: "cover",
           backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
+          backgroundPositionY: "40%",
         }}
-        className="h-[80vh] pt-[92px] flex flex-col items-center justify-center relative"
+        className="h-[100vh] pt-[92px] flex flex-col items-center justify-center relative"
       >
         <div
           data-aos="zoom-in"

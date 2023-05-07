@@ -62,23 +62,6 @@ const Hero2 = ({ translation, setTranslation }) => {
                 </Link>
               </div>
             </div>
-            <div className="pt-1 md:pt-4 mt-1 md:mt-0 md:ml-2">
-              {/* <button
-                onClick={toggleTranslate}
-                type="option"
-                className="bg-accent duration-500 shadow-lg text-paragraphHell h-10 w-44 text-center uppercase"
-              >
-              {translation === "en" ? "Deutsch" : "Englisch"}
-              </button> */}
-              <select
-                onChange={toggleTranslate}
-                className="bg-accent duration-500 shadow-lg text-paragraphHell h-10 w-44 text-center uppercase"
-              >
-                
-              <option value="de">Deutsch</option>
-              <option value="en">Englisch</option>
-              </select>
-            </div>
           </div>
         </div>
         <div data-aos="fade-in" className=" ">

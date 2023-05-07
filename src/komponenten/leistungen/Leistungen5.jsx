@@ -3,23 +3,25 @@ import "aos/dist/aos.css";
 import AOS from "aos";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "aos/dist/aos.css";
-import "../styles/leistungen.css";
-import { MyContext } from "../context/ContextProvider";
+import "../../styles/leistungen.css";
+import useFetch from "../../hooks/useFetch";
+import zeit from "../../assets/zeit.webp"
 
-const LeistungenElemente = (props) => {
+const Leistungen5 = ({translation}) => {
+
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  const anzahl = [1, 2, 3];
+  
 
-  const { translate, setTranslate } = useContext(MyContext);
+  const { loading, error, data } = useFetch(
+    "https://strapi.canaxa.click/api/leistungen?populate=*&sort=id&locale=" + translation
+  );
 
-  if (!props.bild[0].attributes) {
-    console.log("hallo");
-  } else {
-    console.log(props.bild[0]?.attributes.url);
-  }
+
+
+  const anzahl = [1,2,3]
 
   return (
     <div>
@@ -39,19 +41,18 @@ const LeistungenElemente = (props) => {
               speed: 800,
             }}
           >
-            {anzahl.map((index, element) => {
+            {data == null ? "" : data.data[4].attributes.bilder.data.map((element, index) => {
               return (
                 <SplideSlide key={index} style={{}}>
                   <div
                     style={{
-                      backgroundImage: `url(${props.bild})`,
+                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
                     }}
                     className="h-[385px]"
                   >
-                    {/* <img src={props.bild} alt="" className="w-full h-full"/> */}
                   </div>
                 </SplideSlide>
               );
@@ -74,12 +75,12 @@ const LeistungenElemente = (props) => {
               speed: 800,
             }}
           >
-            {anzahl.map((index, element) => {
+            {data == null ? "" : data.data[4].attributes.bilder.data.map((element, index ) => {
               return (
                 <SplideSlide key={index} style={{}}>
                   <div
                     style={{
-                      backgroundImage: `url(${props.bild})`,
+                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
@@ -97,9 +98,9 @@ const LeistungenElemente = (props) => {
         >
           <div className="h-full bg-accent py-12 sm:py-0 flex flex-col items-center justify-center">
             <div className="max-w-[80%] ">
-              <h3 className="text-2xl sm:text-3xl mb-4">{props.title}</h3>
+              <h3 className="text-2xl sm:text-3xl mb-4">{data == null ? "" : data.data[4].attributes.titel}</h3>
 
-              <p>{props.content}</p>
+              <p>{data == null ? "" :  data.data[4].attributes.beschreibung}</p>
             </div>
           </div>
         </div>
@@ -108,4 +109,4 @@ const LeistungenElemente = (props) => {
   );
 };
 
-export default LeistungenElemente;
+export default Leistungen5;
