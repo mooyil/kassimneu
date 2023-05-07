@@ -88,7 +88,6 @@ const SocialMedia2 = () => {
                       >
                         <div className="">
                           <a href={element.attributes.link}>
-                            asda
                             <img
                               src={
                                 "https://strapi.canaxa.click" +
