@@ -11,7 +11,7 @@ spec:
     - demo.kassim.canaxa.click
     secretName: letsencrypt-secret-prod
   rules:
-  - host: demo.kassim.canaxa.click
+  - host: growwithkassim.com
     http:
       paths:
       - path: /
