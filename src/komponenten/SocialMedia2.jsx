@@ -4,42 +4,22 @@ import { motion } from "framer-motion";
 import nba from "../assets/nba.png";
 import { Splide, SplideSlide } from "@splidejs/react-splide";
 import { MyContext } from "../context/ContextProvider";
+import useFetch from "../hooks/useFetch";
 
 const SocialMedia2 = () => {
-
   const { translate, setTranslate } = useContext(MyContext);
 
+  const { loading, error, data } = useFetch(
+    "https://strapi.canaxa.click/api/instagram-posts?populate=*"
+  );
 
-  const obj1 = {
-    height: "500px",
-    width: "1200px",
-  };
+  if (data == null) {
+    console.log("null");
+  } else {
+    console.log(data.data);
+  }
 
-  const obj2 = {
-    heigth: "500px",
-    width: "750px",
-  };
-
-  const obj3 = {
-    heigth: "400px",
-    width: "400px",
-  };
-
-  const obj4 = {
-    heigth: "400px",
-    width: "270px",
-  };
-
-  const post = [
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-    "https://www.instagram.com/p/Cq9bwrDMgRd/?utm",
-  ];
+  const post = [1, 2, 3];
 
   const [width, setWidth] = useState(0);
   const carusel = useRef();
@@ -97,19 +77,31 @@ const SocialMedia2 = () => {
                   },
                 },
               }}
-              >
-              {post.map((element, index) => {
-                return (
-                  <SplideSlide
-                    key={index}
-                    style={{ display: "flex", justifyContent: "center" }}
-                  >
-                    <div>
-                      <img src={nba} alt="nba" className="rounded-lg " />
-                    </div>
-                  </SplideSlide>
-                );
-              })}
+            >
+              {data == null
+                ? ""
+                : data.data.map((element, index) => {
+                    return (
+                      <SplideSlide
+                        key={index}
+                        style={{ display: "flex", justifyContent: "center" }}
+                      >
+                        <div className="">
+                          <a href={element.attributes.link}>
+                            asda
+                            <img
+                              src={
+                                "https://strapi.canaxa.click" +
+                                element.attributes.post_bild.data.attributes.url
+                              }
+                              alt="nba"
+                              className="rounded-lg "
+                            />
+                          </a>
+                        </div>
+                      </SplideSlide>
+                    );
+                  })}
             </Splide>
           </div>
         </div>

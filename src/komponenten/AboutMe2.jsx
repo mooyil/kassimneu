@@ -21,12 +21,6 @@ const AboutMe2 = ({ translation, setTranslation }) => {
       "&sort=jahr"
   );
 
-  if (data == null) {
-    console.log("null");
-  } else {
-    console.log(data.data[0].attributes.id);
-  }
-
   return (
     <div className="">
       <div className="">

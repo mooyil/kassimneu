@@ -8,7 +8,7 @@ const ÜberMich = ({translation, setTranslation}) => {
     <div>
       {/* <Navbar2/> */}
       <AboutMe2 translation={translation} setTranslation={setTranslation}/>
-      {/* <SocialMedia2/> */}
+      <SocialMedia2/>
     </div>
   )
 }
