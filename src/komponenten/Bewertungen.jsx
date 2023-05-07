@@ -17,7 +17,7 @@ const Bewertungen = ({translation, setTranslation}) => {
   if (data == null) {
     console.log("null");
   } else {
-    console.log(data);
+    console.log(data.data);
   }
 
   return (
@@ -84,7 +84,7 @@ const Bewertungen = ({translation, setTranslation}) => {
                         />
                         <div class="author">
                           <p className="text-paragraph">
-                            {bewertung.attributes.name}
+                            {bewertung.attributes.kunden_name}
                           </p>
                         </div>
                       </figure>
