@@ -147,3 +147,81 @@
   }
   
   
+  .pfeil {
+    /* margin-left: -20px; */
+    top: -5px;
+    left: 33px;
+    transform :rotateZ(25deg);
+    /* border: 2px solid red; */
+  }
+  
+  .Ziel{
+    animation: 0.3s   slideInFromRigth;
+    border: 2px solid red;
+    width: 10px;
+    height: 0px;
+    position: absolute;
+    top: -20px;
+  }
+  
+  @keyframes slideInFromRigth {
+    0% {
+      transform: translateX(10%)
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+  
+  @keyframes slideInFromLeft {
+    0% {
+      transform: translate(-100%, -50%) rotateZ(0deg);
+    }
+    75% {
+      transform: translate(0)  rotateZ(25deg);
+    }
+    80%{
+      transform: translateX(0px) rotateZ(25deg);
+    }
+    85%{
+      transform: translateX(-5px) rotateZ(25deg)
+    }
+    90%{
+      transform: translateX(5px) rotateZ(25deg);
+    }
+    95%{
+      transform: translateX(-5px) rotateZ(25deg);
+    }
+    100%{
+      transform: translateX(0) rotateZ(25deg);
+    }
+  }
+  
+  @keyframes horizontal-shaking {
+    0% { transform: translateX(0) }
+    25% { transform: translateX(5px) }
+    50% { transform: translateX(-5px) }
+    75% { transform: translateX(5px) }
+    100% { transform: translateX(0) }
+   }
+  
+  /* @keyframes rotateArrow {
+    0% {
+      transform: rotateZ(-45deg);
+    }
+    100% {
+      transform: rotateZ(45deg);
+    }
+  } */
+  
+  .pfeilani {
+    animation: 0.2s   slideInFromLeft;
+  
+  
+  }
+  
+  /* .container{
+    animation-name: horizontal-shaking;
+    animation-delay: 0.55s;
+    animation-duration: 0.1s;
+  } */

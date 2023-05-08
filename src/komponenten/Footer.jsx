@@ -16,6 +16,7 @@ const Footer = ({ translation, setTranslation }) => {
         className="flex flex-col sm:flex-row justify-evenly"
       >
         <div className="flex flex-col mb-6 sm:mb-0 justify-center">
+          
           <span className="text-xl font-bold">Grow with Kassim</span>
           <span className="text-xs">Evolve your life to high achievements</span>
         </div>

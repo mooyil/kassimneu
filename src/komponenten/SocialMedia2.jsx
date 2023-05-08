@@ -94,7 +94,7 @@ const SocialMedia2 = () => {
                                 element.attributes.post_bild.data.attributes.url
                               }
                               alt="nba"
-                              className="rounded-lg "
+                              className="rounded-lg w-[300px]"
                             />
                           </a>
                         </div>
