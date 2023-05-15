@@ -5,29 +5,19 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "aos/dist/aos.css";
 import "../../styles/leistungen.css";
 import useFetch from "../../hooks/useFetch";
-import zeit from "../../assets/zeit.webp"
+import zeit from "../../assets/zeit.webp";
 
-const Leistungen1 = ({translation}) => {
-
+const Leistungen1 = ({ translation }) => {
   useEffect(() => {
     AOS.init({ duration: 1000 });
   }, []);
 
-  
-
   const { loading, error, data } = useFetch(
-    "https://strapi.canaxa.click/api/leistungen?populate=*&sort=id&locale=" + translation
+    "https://strapi.canaxa.click/api/leistungen?populate=*&sort=id&locale=" +
+      translation
   );
 
-  
-
-  if (data == null) {
-    console.log("null");
-  } else {
-    console.log(data.data[0].attributes.bilder.data[0].attributes.url);
-  }
-
-  const anzahl = [1,2,3]
+  const anzahl = [1, 2, 3];
 
   return (
     <div>
@@ -47,22 +37,23 @@ const Leistungen1 = ({translation}) => {
               speed: 800,
             }}
           >
-            {data == null ? "" : data.data[0].attributes.bilder.data.map((element, index) => {
-              return (
-                <SplideSlide key={index} style={{}}>
-                  <div
-                    style={{
-                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                    }}
-                    className="h-[385px]"
-                  >
-                  </div>
-                </SplideSlide>
-              );
-            })}
+            {data == null || data.data[0].attributes.bilder.data == null
+              ? ""
+              : data.data[0].attributes.bilder.data.map((element, index) => {
+                  return (
+                    <SplideSlide key={index} style={{}}>
+                      <div
+                        style={{
+                          backgroundImage: `url(${element.attributes.url})`,
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center",
+                        }}
+                        className="h-[385px]"
+                      ></div>
+                    </SplideSlide>
+                  );
+                })}
           </Splide>
         </div>
         <div
@@ -81,21 +72,23 @@ const Leistungen1 = ({translation}) => {
               speed: 800,
             }}
           >
-            {data == null ? "" : data.data[0].attributes.bilder.data.map((element, index ) => {
-              return (
-                <SplideSlide key={index} style={{}}>
-                  <div
-                    style={{
-                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
-                      backgroundSize: "cover",
-                      backgroundRepeat: "no-repeat",
-                      backgroundPosition: "center",
-                    }}
-                    className="h-[400px] sm:h-[885px]"
-                  ></div>
-                </SplideSlide>
-              );
-            })}
+            {data == null || data.data[0].attributes.bilder.data == null
+              ? ""
+              : data.data[0].attributes.bilder.data.map((element, index) => {
+                  return (
+                    <SplideSlide key={index} style={{}}>
+                      <div
+                        style={{
+                          backgroundImage: `url(${element.attributes.url})`,
+                          backgroundSize: "cover",
+                          backgroundRepeat: "no-repeat",
+                          backgroundPosition: "center",
+                        }}
+                        className="h-[400px] sm:h-[885px]"
+                      ></div>
+                    </SplideSlide>
+                  );
+                })}
           </Splide>
         </div>
         <div
@@ -104,9 +97,11 @@ const Leistungen1 = ({translation}) => {
         >
           <div className="h-full bg-accent py-12 sm:py-0 flex flex-col items-center justify-center">
             <div className="max-w-[80%] ">
-              <h3 className="text-2xl sm:text-3xl mb-4">{data == null ? "" : data.data[0].attributes.titel}</h3>
+              <h3 className="text-2xl sm:text-3xl mb-4">
+                {data == null ? "" : data.data[0].attributes.titel}
+              </h3>
 
-              <p>{data == null ? "" :  data.data[0].attributes.beschreibung}</p>
+              <p>{data == null ? "" : data.data[0].attributes.beschreibung}</p>
             </div>
           </div>
         </div>

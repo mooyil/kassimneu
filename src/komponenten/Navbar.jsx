@@ -14,7 +14,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const height = navbarRef.current.clientHeight;
-    console.log(height);
+    // console.log(height);
   }, []);
 
   const handleToggle = () => {

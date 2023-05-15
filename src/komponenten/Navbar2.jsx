@@ -17,7 +17,7 @@ const Navbar2 = ({ translation, setTranslation }) => {
 
   useEffect(() => {
     const height = navbarRef.current.clientHeight;
-    console.log(height);
+    // console.log(height);
   }, []);
 
   const handleToggle = () => {

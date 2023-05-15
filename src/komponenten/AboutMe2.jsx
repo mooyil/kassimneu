@@ -59,7 +59,7 @@ const AboutMe2 = ({ translation, setTranslation }) => {
         >
           <ul class="timeline py-12 ">
             {data === null
-              ? console.log("null")
+              ? ""
               : data.data.map((element, index) => {
                   return (
                     <li key={index}>

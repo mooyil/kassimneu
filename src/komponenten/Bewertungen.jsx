@@ -7,18 +7,13 @@ import stress from "../assets/stress.webp";
 import useFetch from "../hooks/useFetch";
 import { MyContext } from "../context/ContextProvider";
 
-const Bewertungen = ({translation, setTranslation}) => {
+const Bewertungen = ({ translation, setTranslation }) => {
   const { translate, setTranslate } = useContext(MyContext);
 
   const { loading, error, data } = useFetch(
-    "https://strapi.canaxa.click/api/bewertungen?populate=*&locale=" + translation
+    "https://strapi.canaxa.click/api/bewertungen?populate=*&locale=" +
+      translation
   );
-
-  if (data == null) {
-    console.log("null");
-  } else {
-    console.log(data.data);
-  }
 
   return (
     <div className="bg-background1">
@@ -63,7 +58,7 @@ const Bewertungen = ({translation, setTranslation}) => {
             }}
           >
             {data == null
-              ? console.log("null")
+              ? ""
               : data.data.map((bewertung, index) => {
                   return (
                     <SplideSlide
@@ -77,8 +72,9 @@ const Bewertungen = ({translation, setTranslation}) => {
                         </blockquote>
                         <img
                           src={
-                            "https://strapi.canaxa.click" +
-                            bewertung.attributes.bild.data.attributes.url
+                            bewertung.attributes.bild.data == null
+                              ? "../assets/kassim1.jpg"
+                              : bewertung.attributes.bild.data.attributes.url
                           }
                           alt="bild"
                         />

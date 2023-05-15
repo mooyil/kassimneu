@@ -36,12 +36,12 @@ const Leistungen6 = ({translation}) => {
               speed: 800,
             }}
           >
-            {data == null ? "" : data.data[5].attributes.bilder.data.map((element, index) => {
+            {data == null || data.data[5].attributes.bilder.data == null ? "" : data.data[5].attributes.bilder.data.map((element, index) => {
               return (
                 <SplideSlide key={index} style={{}}>
                   <div
                     style={{
-                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
+                      backgroundImage: `url(${element.attributes.url})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",
@@ -83,12 +83,12 @@ const Leistungen6 = ({translation}) => {
               speed: 800,
             }}
           >
-            {data == null ? "" : data.data[5].attributes.bilder.data.map((element, index ) => {
+            {data == null || data.data[5].attributes.bilder.data == null ? "" : data.data[5].attributes.bilder.data.map((element, index ) => {
               return (
                 <SplideSlide key={index} style={{}}>
                   <div
                     style={{
-                      backgroundImage: `url(${"https://strapi.canaxa.click" + element.attributes.url})`,
+                      backgroundImage: `url(${element.attributes.url})`,
                       backgroundSize: "cover",
                       backgroundRepeat: "no-repeat",
                       backgroundPosition: "center",

@@ -18,7 +18,6 @@ import { MyContext } from "../context/ContextProvider";
 const AboutMe = ({translation, setTranslation}) => {
   const { translate, setTranslate } = useContext(MyContext);
 
-console.log(translation)
 
   return (
     <div id="überuns" className=" ">

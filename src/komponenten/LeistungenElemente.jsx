@@ -15,11 +15,6 @@ const LeistungenElemente = (props) => {
 
   const { translate, setTranslate } = useContext(MyContext);
 
-  if (!props.bild[0].attributes) {
-    console.log("hallo");
-  } else {
-    console.log(props.bild[0]?.attributes.url);
-  }
 
   return (
     <div>

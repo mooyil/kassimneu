@@ -13,11 +13,6 @@ const SocialMedia2 = () => {
     "https://strapi.canaxa.click/api/instagram-posts?populate=*"
   );
 
-  if (data == null) {
-    console.log("null");
-  } else {
-    console.log(data.data);
-  }
 
   const post = [1, 2, 3];
 
@@ -62,7 +57,7 @@ const SocialMedia2 = () => {
                 type: "loop",
                 rewind: true,
                 perMove: 1,
-                speed: 50000,
+                speed: 800,
                 pauseOnHover: false,
                 breakpoints: {
                   760: {
@@ -87,10 +82,10 @@ const SocialMedia2 = () => {
                         style={{ display: "flex", justifyContent: "center" }}
                       >
                         <div className="">
-                          <a href={element.attributes.link}>
+                          <a target="_blank" href={element.attributes.link}>
                             <img
                               src={
-                                "https://strapi.canaxa.click" +
+                                element.attributes.post_bild.data == null ? "../assets/kassim1.jpg" :
                                 element.attributes.post_bild.data.attributes.url
                               }
                               alt="nba"
